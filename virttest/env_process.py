@@ -109,6 +109,7 @@ def preprocess_vm(test, params, env, name):
 
     old_vm = copy.copy(vm)
 
+    """
     if vm_type == 'libvirt':
         if not vm.exists() and (params.get("type") != "unattended_install" and
                                 params.get("type") != "svirt_install"):
@@ -118,7 +119,7 @@ def preprocess_vm(test, params, env, name):
                 raise error.TestError(error_msg)
             else:
                 raise error.TestNAError(error_msg)
-
+    """
     remove_vm = False
     if params.get("force_remove_vm") == "yes":
         remove_vm = True
