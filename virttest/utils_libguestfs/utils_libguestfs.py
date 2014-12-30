@@ -2293,6 +2293,56 @@ class GuestfishPersistent(Guestfish):
         daemon) that runs inside the hypervisor.
         """
         return self.inner_cmd("debug %s %s" % (subcmd, extraargs))
+    
+    def setxattr(self, xattr, val, vallen, path):
+        """
+        setxattr - set extended attribute of a file or directory
+        
+        This call sets the extended attribute named "xattr" of the file "path"
+        to the value "val" (of length "vallen"). The value is arbitrary 8 bit
+        data.
+        """
+        return self.inner_cmd("setxattr %s %s %s %s" % (xattr, val, vallen, path))
+
+    def getxattr(self, path, name):
+        """
+        getxattr - get a single extended attribute
+
+        Get a single extended attribute from file "path" named "name". This call
+        follows symlinks. If you want to lookup an extended attribute for the
+        symlink itself, use "lgetxattr".
+
+        Normally it is better to get all extended attributes from a file in one
+        go by calling "getxattrs". However some Linux filesystem implementations
+        are buggy and do not provide a way to list out attributes. For these
+        filesystems (notably ntfs-3g) you have to know the names of the extended
+        attributes you want in advance and call this function.
+
+        Extended attribute values are blobs of binary data. If there is no
+        extended attribute named "name", this returns an error.
+        """
+        return self.inner_cmd("getxattr %s %s" % (path, name))
+
+    def removexattr(self, xattr, path):
+        """
+        removexattr - remove extended attribute of a file or directory
+        
+        This call removes the extended attribute named "xattr" of the file
+        "path".
+        """
+        return self.inner_cmd("removexattr %s %s" % (xattr, path))
+
+    def getxattrs(self, path):
+        """
+        getxattrs - list extended attributes of a file or directory
+        
+        This call lists the extended attributes of the file or directory "path".
+
+        At the system call level, this is a combination of the listxattr(2) and
+        getxattr(2) calls.
+        """
+        return self.inner_cmd("getxattrs %s" % (path))
+
 
     def set_e2uuid(self, device, uuid):
         """
