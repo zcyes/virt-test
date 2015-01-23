@@ -2,6 +2,7 @@ import re
 import os
 import logging
 import commands
+from libguestfs_api import GuestfishAPIs
 from autotest.client.shared import error, utils
 from virttest import virsh, virt_vm, libvirt_vm, data_dir
 from virttest import utils_net, xml_utils
@@ -505,7 +506,7 @@ class VirtTools(object):
         return sys_info
 
 
-class GuestfishTools(lgf.GuestfishPersistent):
+class GuestfishTools(GuestfishAPIs):
 
     """Useful Tools for Guestfish class."""
 
