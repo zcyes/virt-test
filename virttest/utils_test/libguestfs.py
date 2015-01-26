@@ -2,12 +2,12 @@ import re
 import os
 import logging
 import commands
-from libguestfs_api import GuestfishAPIs
+from virttest.utils_libguestfs.libguestfs_api import GuestfishAPIs
 from autotest.client.shared import error, utils
 from virttest import virsh, virt_vm, libvirt_vm, data_dir
 from virttest import utils_net, xml_utils
 from virttest.libvirt_xml import vm_xml, xcepts
-from virttest import utils_libguestfs as lgf
+from virttest.utils_libguestfs import utils_libguestfs as lgf
 from virttest import qemu_storage
 
 
